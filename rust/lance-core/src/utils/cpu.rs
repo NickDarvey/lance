@@ -71,6 +71,14 @@ mod aarch64 {
     }
 }
 
+#[cfg(all(target_arch = "aarch64", target_os = "windows"))]
+mod aarch64 {
+    pub fn has_neon_f16_support() -> bool {
+        // https://github.com/lancedb/lance/issues/2411
+        false
+    }
+}
+
 #[cfg(all(target_arch = "aarch64", target_os = "linux"))]
 mod aarch64 {
     pub fn has_neon_f16_support() -> bool {
